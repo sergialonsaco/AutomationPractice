@@ -1,4 +1,4 @@
-# Automation of a website validation using Docker, RobotFramework and Selenium
+# Automation of a website validation using Docker RobotFramework and Selenium
 
 This project is a practice about the automation of the validation of a website using Robotframework and Selenium as the validation tools and docker as devops tool.
 
