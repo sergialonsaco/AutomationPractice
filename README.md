@@ -16,6 +16,11 @@ Once download is finish, from a terminal move to the project folder before conti
 It has been assumed that a user has been already sign up in the website to avoid
 long test cases, even though, automation of the sign up of new users can be done.
 
+## Test Data variables
+
+Even robotframework allows to change inline all the variables used in the TCs,
+the following resource *./tests/variables.tsv* will help also to modify the test data.
+
 ## Execute test suite with Docker
 
 First of all ensure docker is correctly installed and configured in your setup.
@@ -44,22 +49,6 @@ For **windows** setup (using PowerShell):
 
     docker run --shm-size=1g -v ${PWD}/tests:/opt/robotframework/tests:Z -v ${PWD}/reports:/opt/robotframework/reports:Z ppodgorsek/robot-framework:latest
 
-### Using docker compose
-
-
--  There is a know error with the image (ppodgorsek/robot-framework) that crash the test cases due to size of logs. Please if this problem occurs use docker run command instead of docker compose commands.
-
-
-Execute following command:
-
-    docker-compose up -e --shm-size=1g robotframework
-
-It will download a robotframework docker image to run the test.
-Once the download is finish, it will execute all the suite test cases.
-
-If you want to run the suite again please execute:
-
-    docker-compose run -e --shm-size=1g robotframework
 
 ## Execute test suite without Docker
 
@@ -111,14 +100,29 @@ Please ensure that the webdrivers for the browsers you want to use (i.e. chrome)
 are located in the path of your setup to allow Selenium library to be able to find
 it, otherwise testcases may not work.
 
-#####Chromium
+#### Chromium
+
 > https://sites.google.com/a/chromium.org/chromedriver/downloads
-#####Firefox
+
+#### Firefox
 > https://github.com/mozilla/geckodriver/releases
 
 
-#### Author
+## Troubleshooting
 
-Sergi Alonso Badia
+### Using docker compose
 
-sergi.alonsobadia@gmail.com
+
+-  There is a know error with the image (ppodgorsek/robot-framework) that crash the test cases due to size of logs. Please if this problem occurs use docker run command instead of docker compose commands.
+
+
+Execute following command:
+
+    docker-compose up -e --shm-size=1g robotframework
+
+It will download a robotframework docker image to run the test.
+Once the download is finish, it will execute all the suite test cases.
+
+If you want to run the suite again please execute:
+
+    docker-compose run -e --shm-size=1g robotframework
