@@ -4,6 +4,13 @@ This project is a practice about the automation of the validation of a website u
 
 There are three diferent ways to execute the test suite, please feel free to use the one you like more.
 
+## Download Project
+
+Please download this project from github:
+> https://github.com/sergialonsobadia/AutomationPractice
+
+Once download is finish, from a terminal move to the project folder before continue. 
+
 ### Assumptions
 
 It has been assumed that a user has been already sign up in the website to avoid
