@@ -1,0 +1,117 @@
+*Settings*							
+Library	SeleniumLibrary	WITH NAME	Selenium				
+							
+*Keywords*							
+Add ${element} into the cart	Sort View by List						
+	Sort Search by In Stock						
+	Click on Add to cart button						
+							
+Add ${products} list in the cart	: FOR	${product}	IN	@{products}			
+		Log	Looking for product ${product}...	level=DEBUG			
+		Search For ${product}					
+		${isfound}	Check ${product} exists				
+		Continue For Loop If	'${isfound}'=='${False}'				
+		Add ${product} into the cart					
+							
+Check ${element} exists	[Documentation]	Keyword to log if the element exists or not in the website					
+	Set Test Variable	${result}	${False}				
+	${status}	${message}=	Run Keyword And Ignore Error	Check Search Failed message appears			
+	Log	${message} result					
+	Run Keyword If	'${status}'=='FAIL'	Set Test Variable	${result}	${True}		
+	[Return]	${result}					
+							
+Check Authentication Failed message appears	Page Should Contain Element	"xpath://*[@class=""alert alert-danger""]"					
+	Element Should Contain	"xpath://*[@class=""alert alert-danger""]/ol/li"	Authentication failed.				
+	Capture Page Screenshot	${TEST_NAME}/authentication-failed.png					
+							
+Check Cart Empty alert appears	Element Should Contain	"xpath://*[@class=""alert alert-warning""]"	Your shopping cart is empty.				
+	Capture Page Screenshot	${TEST_NAME}/cart-empty.png					
+							
+Check Product List is not Empty	Selenium.Page Should Contain Element	"xpath://li[@class=""ajax_block_product first-in-line last-line first-item-of-tablet-line first-item-of-mobile-line last-mobile-line col-xs-12""]"					
+							
+Check Search Failed message appears	Element Should Contain	"xpath://*[@class=""alert alert-warning""]"	No results were found for your search				
+	Capture Page Screenshot	${TEST_NAME}/Non-existing-product-alert.png					
+							
+Check Terms and Conditions checkbox and continue purchase	Page Should Contain Checkbox	"xpath://*[@id=""cgv""]"					
+	Select Checkbox	"xpath://*[@id=""cgv""]"					
+	Click Element	"xpath://*[@name=""processCarrier""]"					
+							
+Check cart is not empty and continue purchase	Selenium.Table Should Contain	"xpath://*[@id=""cart_summary""]"	Faded Short Sleeve T-shirts				
+	Selenium.Table Should Contain	"xpath://*[@id=""cart_summary""]"	Printed Dress				
+	Page Should Contain Element	"xpath://*[@class=""button btn btn-default standard-checkout button-medium""]"					
+	Click Element	"xpath://*[@class=""button btn btn-default standard-checkout button-medium""]"					
+							
+Check new order has been added	#Go to order page						
+	Click Element	"xpath://*[@title=""Back to orders""]"					
+	Capture Page Screenshot	${TEST_NAME}/order_list.png					
+							
+Check promt appears with alert message	Element Should Be Visible	"xpath://*[@class=""fancybox-error""]"					
+	Element Should Contain	"xpath://*[@class=""fancybox-error""]"	You must agree to the terms of service before continuing.				
+	Capture Page Screenshot	${TEST_NAME}/agree-terms-prompt.png					
+							
+Click on ${button_text} button	Wait Until Page Contains Element	"xpath: //*[contains(text(), ""${button_text}"")]"					
+	Click Element	"xpath: //*[contains(text(), ""${button_text}"")]"					
+							
+Go to Check out section from purchase view	Selenium.Go Back						
+	Mouse over	"xpath://*[@title=""View my shopping cart""]"					
+	Wait Until Element Is Visible	"xpath://*[@title=""Check out""]"					
+	Click Element	"xpath://*[@title=""Check out""]"					
+	Capture Page Screenshot	${TEST_NAME}/cart_list.png					
+							
+Open Browser To automation practice Website	Open Browser	http://automationpractice.com	browser=${BROWSER}				
+	Delete All Cookies						
+	Location Should Contain	http://automationpractice.com/					
+							
+Proceed to purchase the cart	#Check purchase summary is not empty						
+	Check cart is not empty and continue purchase						
+	#Check Address						
+	Click Element	"xpath://*[@name=""processAddress""]"					
+	#Accept Terms						
+	Check Terms and Conditions checkbox and continue purchase						
+	#Select Pay by bank wire						
+	Click Element	"xpath://*[@title=""Pay by bank wire""]"					
+	Click on I confirm my order button						
+							
+Process purchase without checking terms and conditions checkbox	#Check purchase summary is not empty						
+	Check cart is not empty and continue purchase						
+	#Check Address						
+	Click Element	"xpath://*[@name=""processAddress""]"					
+	Page Should Contain Checkbox	"xpath://*[@id=""cgv""]"					
+	Click Element	"xpath://*[@name=""processCarrier""]"					
+							
+Search For ${element}	Input Text	"xpath://*[@name=""search_query""]"	${element}				
+	Press Key	"xpath://*[@name=""search_query""]"	\\13				
+	Capture Page Screenshot	${TEST_NAME}/search-${element}.png					
+							
+Sign in and continue purchase process	#Log in						
+	Input Text	"xpath://*[@id=""email""]"	${USER}				
+	Input Password	"xpath://*[@id=""passwd""]"	${PWD}				
+	Click Button	"xpath://*[@id=""SubmitLogin""]"					
+	#Check Address						
+	Click Element	"xpath://*[@name=""processAddress""]"					
+	#Accept Terms						
+	Check Terms and Conditions checkbox and continue purchase						
+	#Select Pay by bank wire						
+	Click Element	"xpath://*[@title=""Pay by bank wire""]"					
+	Click on I confirm my order button						
+							
+Sign in with ${user} and ${password} in the website	Click on Sign in button						
+	Input Text	"xpath://*[@id=""email""]"	${user}				
+	Input Password	"xpath://*[@id=""passwd""]"	${password}				
+	Click Element	"xpath://*[@name=""SubmitLogin""]"					
+							
+Sort Search by In Stock	Page Should Contain List	"xpath://select[@id=""selectProductSort""]"					
+	Mouse over	"xpath://select[@id=""selectProductSort""]"					
+	Click Element	"xpath://select[@id=""selectProductSort""]"					
+	Mouse Down	"xpath://option[@value=""quantity:desc""]"					
+	Click Element	"xpath://option[@value=""quantity:desc""]"					
+							
+Sort View by List	[Documentation]	Sorts the viewport by list					
+	Page Should Contain Element	"xpath://li[@id=""list""]"					
+	Click Element	"xpath://li[@id=""list""]"					
+							
+Test Setup	[Documentation]	Open the browser in the automationpractice url					
+	Open Browser To automation practice Website						
+							
+Test Teardown	[Documentation]	This teardown will close the browser					
+	Close Browser						
