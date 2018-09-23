@@ -9,7 +9,7 @@ There are three diferent ways to execute the test suite, please feel free to use
 Please download this project from github:
 > https://github.com/sergialonsobadia/AutomationPractice
 
-Once download is finish, from a terminal move to the project folder before continue. 
+Once download is finish, from a terminal move to the project folder before continue.
 
 ### Assumptions
 
@@ -28,34 +28,38 @@ the robotframework.
 Once Docker is correctly installed, from a terminal in your setup please
 move to the project folder:
 
-> cd /path_where_this_located/
+    cd /path_where_this_located/
 
 ### Using docker run
 
 Execute following command:
 
-> docker pull ppodgorsek/robot-framework
+    docker pull ppodgorsek/robot-framework
 
-For linux setup:
+For **linux** setup:
 
-> docker run --shm-size=1g -v `pwd`/tests:/opt/robotframework/tests:Z -v `pwd`/reports:/opt/robotframework/reports:Z ppodgorsek/robot-framework:latest
+    docker run --shm-size=1g -v `pwd`/tests:/opt/robotframework/tests:Z -v `pwd`/reports:/opt/robotframework/reports:Z ppodgorsek/robot-framework:latest
 
-For windows setup (using PowerShell):
+For **windows** setup (using PowerShell):
 
->docker run --shm-size=1g -v ${PWD}/tests:/opt/robotframework/tests:Z -v ${PWD}/reports:/opt/robotframework/reports:Z ppodgorsek/robot-framework:latest
+    docker run --shm-size=1g -v ${PWD}/tests:/opt/robotframework/tests:Z -v ${PWD}/reports:/opt/robotframework/reports:Z ppodgorsek/robot-framework:latest
 
 ### Using docker compose
 
+
+-  There is a know error with the image (ppodgorsek/robot-framework) that crash the test cases due to size of logs. Please if this problem occurs use docker run command instead of docker compose commands.
+
+
 Execute following command:
 
-> docker-compose up -e --shm-size=1g robotframework
+    docker-compose up -e --shm-size=1g robotframework
 
 It will download a robotframework docker image to run the test.
 Once the download is finish, it will execute all the suite test cases.
 
 If you want to run the suite again please execute:
 
-> docker-compose run -e --shm-size=1g robotframework
+    docker-compose run -e --shm-size=1g robotframework
 
 ## Execute test suite without Docker
 
@@ -69,32 +73,31 @@ It will be needed to have Python2.7 and Pip package installed in the setup.
 > https://pypi.org/project/pip/
 
 Packages can be installed from requirements file:
-> pip install -U -r requirements.txt
+
+    pip install -U -r requirements.txt
 
 ### Execute Test cases from command line
 
 Please first of all ensure roboframework is correctly installed in your setup.
 
 Execute the next command to run the test suite:
-> robot [OPTIONS] /path_to_project/tests/alpha_suite.robot
+
+
+    robot [OPTIONS] /path_to_project/tests/alpha_suite.robot
 
 #### OPTIONS
 Options allow the user to change the test variables that will be used, for example:
 
-> robot --variable BROWSER:firefox ./tests/alpha_suite.robot
+-   robot --variable BROWSER:firefox ./tests/alpha_suite.robot
 
-> robot --outputdir /my/custom/outputdir ./test/alpha_suite.robot
+-    robot --outputdir /my/custom/outputdir ./test/alpha_suite.robot
 
 ### Execute in Robotframework RIDE
 
-First of all, install ride:
+First of all, check that ride and all the packages from **requirements.txt** file has been installed:
 
- > pip install -U robotframework-ride
+    pip freeze
 
-Also ensure the setup has installed the following packages:
-
-> pip install robotframework
-> pip install robotframework-seleniumlibrary
 
 Open Ride and Load ./tests/alpha_suite.robot
 
