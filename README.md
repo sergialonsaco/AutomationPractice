@@ -49,22 +49,6 @@ For **windows** setup (using PowerShell):
 
     docker run --shm-size=1g -v ${PWD}/tests:/opt/robotframework/tests:Z -v ${PWD}/reports:/opt/robotframework/reports:Z ppodgorsek/robot-framework:latest
 
-### Using docker compose
-
-
--  There is a know error with the image (ppodgorsek/robot-framework) that crash the test cases due to size of logs. Please if this problem occurs use docker run command instead of docker compose commands.
-
-
-Execute following command:
-
-    docker-compose up -e --shm-size=1g robotframework
-
-It will download a robotframework docker image to run the test.
-Once the download is finish, it will execute all the suite test cases.
-
-If you want to run the suite again please execute:
-
-    docker-compose run -e --shm-size=1g robotframework
 
 ## Execute test suite without Docker
 
@@ -124,8 +108,21 @@ it, otherwise testcases may not work.
 > https://github.com/mozilla/geckodriver/releases
 
 
-#### Author
+## Troubleshooting
 
-Sergi Alonso Badia
+### Using docker compose
 
-sergi.alonsobadia@gmail.com
+
+-  There is a know error with the image (ppodgorsek/robot-framework) that crash the test cases due to size of logs. Please if this problem occurs use docker run command instead of docker compose commands.
+
+
+Execute following command:
+
+    docker-compose up -e --shm-size=1g robotframework
+
+It will download a robotframework docker image to run the test.
+Once the download is finish, it will execute all the suite test cases.
+
+If you want to run the suite again please execute:
+
+    docker-compose run -e --shm-size=1g robotframework
