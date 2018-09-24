@@ -15,19 +15,6 @@ Once download is finish, from a terminal move to the project folder before conti
 
 It has been assumed that a user has been already sign up in the website in order to focus in the purchase process, even though, automation of the sign up of new users can be done.
 
-## Test Data variables
-
-Even robotframework allows to change inline all the variables used in the TCs,
-the following resource *./tests/variables.tsv* will help also to modify the test data.
-
-| NAME | VALUE | DESCRIPTION
-|----|----|----|
-|${USER} |  sergi.alonso@alphatest.com   | user name to sign in
-${PASSWD}   |  sergialphatest    | password to sign in
-${FAKE_USER}   |   fake@fake.com    | wrong user to sign in
-${FAKE_PASSWD} |  ThisIsAWrongPwd    | wrong passwrod to sign in
-${BROWSER} | chrome  | name of browser to use
-@{products} | [Blouse, Shirt , Top, Hat, Not Existing] Product]    | list of product to be added in the cart. If a product is not found, it will be discarted
 
 ## Execute test suite with Docker
 
@@ -73,7 +60,7 @@ Packages can be installed from requirements file:
 
     pip install -U -r requirements.txt
 
-### Execute Test cases from command line
+### Execute Test cases with command line
 
 Please first of all ensure roboframework is correctly installed in your setup.
 
@@ -89,6 +76,7 @@ Options allow the user to change the test variables that will be used, for examp
 
 -    robot --outputdir /my/custom/outputdir ./test/alpha_suite.robot
 
+
 ### Execute in Robotframework RIDE
 
 First of all, check that ride and all the packages from **requirements.txt** file has been installed:
@@ -102,7 +90,14 @@ Select tests cases to execute and play run button
 If you need more information about the IDE please check:
 > https://github.com/robotframework/RIDE/wiki/Installation-Instructions
 
-### WebDriver
+### Execute Test Cases with Jenkins
+
+Using the provide **JenkinsFile**:
+
+> Create a new job in your jenkins environment and configureit with the JenkinsFile
+
+
+## WebDriver
 
 Please ensure that the webdrivers for the browsers you want to use (i.e. chrome)
 are located in the path of your setup to allow Selenium library to be able to find
@@ -114,6 +109,21 @@ it, otherwise testcases may not work.
 
 #### Firefox
 > https://github.com/mozilla/geckodriver/releases
+
+
+## Test Data variables
+
+Even robotframework allows to change inline all the variables used in the TCs,
+the following resource *./tests/variables.tsv* will help also to modify the test data.
+
+| NAME | VALUE | DESCRIPTION
+|----|----|----|
+|${USER} |  sergi.alonso@alphatest.com   | user name to sign in
+${PASSWD}   |  sergialphatest    | password to sign in
+${FAKE_USER}   |   fake@fake.com    | wrong user to sign in
+${FAKE_PASSWD} |  ThisIsAWrongPwd    | wrong passwrod to sign in
+${BROWSER} | chrome  | name of browser to use
+@{products} | [Blouse, Shirt , Top, Hat, Not Existing] Product]    | list of product to be added in the cart. If a product is not found, it will be discarted
 
 
 ## Troubleshooting
