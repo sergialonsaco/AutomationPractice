@@ -1,7 +1,7 @@
 *Variables*							
 ${USER}	sergi.alonso@alphatest.com	# user name to sign in					
-${PWD}	sergialphatest	# password to sign in					
+${PASSWD}	sergialphatest	# password to sign in					
 ${FAKE_USER}	fake@fake.com	# wrong user to sign in					
-${FAKE_PWD}	ThisIsAWrongPwd	# wrong passwrod to sign in					
+${FAKE_PASSWD}	ThisIsAWrongPwd	# wrong passwrod to sign in					
 ${BROWSER}	chrome	# name of browser to use					
 @{products}	Blouse	Shirt	Top	Hat	Not Existing Product	# list of product to be added in the cart. If a product is not found, it will be discarted	
