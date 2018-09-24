@@ -27,8 +27,6 @@ Check Authentication Failed message appears	Page Should Contain Element	"xpath:/
 Check Cart Empty alert appears	Element Should Contain	"xpath://*[@class=""alert alert-warning""]"	Your shopping cart is empty.				
 	Capture Page Screenshot	${TEST_NAME}/cart-empty.png					
 							
-Check Product List is not Empty	Selenium.Page Should Contain Element	"xpath://li[@class=""ajax_block_product first-in-line last-line first-item-of-tablet-line first-item-of-mobile-line last-mobile-line col-xs-12""]"					
-							
 Check Search Failed message appears	Element Should Contain	"xpath://*[@class=""alert alert-warning""]"	No results were found for your search				
 	Capture Page Screenshot	${TEST_NAME}/Non-existing-product-alert.png					
 							
@@ -79,13 +77,15 @@ Process purchase without checking terms and conditions checkbox	#Check purchase 
 	Page Should Contain Checkbox	"xpath://*[@id=""cgv""]"					
 	Click Element	"xpath://*[@name=""processCarrier""]"					
 							
-Search For ${element}	Input Text	"xpath://*[@name=""search_query""]"	${element}				
+Search For ${element}	[Documentation]	Looks for a prodcut in the search box					
+	Input Text	"xpath://*[@name=""search_query""]"	${element}				
 	Press Key	"xpath://*[@name=""search_query""]"	\\13				
 	Capture Page Screenshot	${TEST_NAME}/search-${element}.png					
 							
-Sign in and continue purchase process	#Log in						
+Sign in and continue purchase process	[Documentation]	Sign in with user and password and continue with the purchase process					
+	#Log in						
 	Input Text	"xpath://*[@id=""email""]"	${USER}				
-	Input Password	"xpath://*[@id=""passwd""]"	${PWD}				
+	Input Password	"xpath://*[@id=""passwd""]"	${PASSWD}				
 	Click Button	"xpath://*[@id=""SubmitLogin""]"					
 	#Check Address						
 	Click Element	"xpath://*[@name=""processAddress""]"					
@@ -95,12 +95,14 @@ Sign in and continue purchase process	#Log in
 	Click Element	"xpath://*[@title=""Pay by bank wire""]"					
 	Click on I confirm my order button						
 							
-Sign in with ${user} and ${password} in the website	Click on Sign in button						
+Sign in with ${user} and ${password} in the website	[Documentation]	Go to sign in option and submit it with user and password					
+	Click on Sign in button						
 	Input Text	"xpath://*[@id=""email""]"	${user}				
 	Input Password	"xpath://*[@id=""passwd""]"	${password}				
 	Click Element	"xpath://*[@name=""SubmitLogin""]"					
 							
-Sort Search by In Stock	Page Should Contain List	"xpath://select[@id=""selectProductSort""]"					
+Sort Search by In Stock	[Documentation]	"Sort the search by ""in stock"""					
+	Page Should Contain List	"xpath://select[@id=""selectProductSort""]"					
 	Mouse over	"xpath://select[@id=""selectProductSort""]"					
 	Click Element	"xpath://select[@id=""selectProductSort""]"					
 	Mouse Down	"xpath://option[@value=""quantity:desc""]"					
