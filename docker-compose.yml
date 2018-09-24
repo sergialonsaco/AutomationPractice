@@ -3,7 +3,7 @@ services:
     robotframework:
         image: ppodgorsek/robot-framework
         environment:
-          - --shm-size=1g
+          - shm-size=1g
         volumes:
           - ./tests/:/opt/robotframework/tests/:Z
           - ./reports:/opt/robotframework/reports:Z
