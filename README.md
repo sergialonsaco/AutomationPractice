@@ -1,5 +1,7 @@
 # Automation of a website validation using Docker RobotFramework and Selenium
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/83ab8679a2a549d0908e607d6697c3e2)](https://app.codacy.com/manual/sergi.alonsobadia/AutomationPractice?utm_source=github.com&utm_medium=referral&utm_content=sergialonsaco/AutomationPractice&utm_campaign=Badge_Grade_Dashboard)
+
 This project is a practice about the automation of the validation of a website
 using Robotframework and Selenium as the validation tools and docker as devops
 tool.
