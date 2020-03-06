@@ -1,9 +1,9 @@
-version: '3'
+version: "3"
 services:
-    robotframework:
-        image: ppodgorsek/robot-framework
-        environment:
-          - --shm-size=1g
-        volumes:
-          - ./tests/:/opt/robotframework/tests/:Z
-          - ./reports:/opt/robotframework/reports:Z
+  robotframework:
+    image: ppodgorsek/robot-framework
+    environment:
+      - shm-size=1g
+    volumes:
+      - ./tests/:/opt/robotframework/tests/:Z
+      - ./reports:/opt/robotframework/reports:Z
